@@ -1,0 +1,10 @@
+/* Optional: Efek blur lembut */
+.backdrop-blur-sm {
+  backdrop-filter: blur(5px);
+}
+
+@media (max-width: 640px) {
+  .faq-answer {
+    font-size: 14px;
+  }
+}
