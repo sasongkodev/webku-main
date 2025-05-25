@@ -8,3 +8,8 @@
     font-size: 14px;
   }
 }
+@media (max-width: 768px) {
+  .hero-image {
+    display: none; /* Sembunyikan gambar di mobile */
+  }
+}

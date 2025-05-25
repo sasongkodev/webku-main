@@ -7,7 +7,7 @@ const Hero = () => {
       {/* Background Overlay for Depth */}
       <div className="absolute inset-0 bg-black opacity-10 z-0"></div>
 
-      <div className="max-w-7xl w-full px-6 text-white flex flex-col md:flex-row items-center justify-between gap-10 z-10">
+      <div className="max-w-7xl w-full px-6 text-white flex flex-col md:flex-row items-center justify-center gap-10 z-10">
         {/* LEFT TEXT */}
         <motion.div
           className="w-full md:w-1/2 text-center md:text-left space-y-6"
@@ -50,16 +50,16 @@ const Hero = () => {
         {/* RIGHT IMAGE (Ilustrasi Website) */}
         <motion.div
           className="w-full md:w-1/2 flex justify-center"
-          style={{ transform: "translateX(-10%)" }} // 👈 Geser ke kiri
-          initial={{ opacity: 0, y: 30, scale: 0.8 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          style={{ transform: "translateX(-10%)" }} // Geser ke kiri
+          initial={{ opacity: 0, x: 50, scale: 0.8 }}
+          whileInView={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
         >
           <img
             src="https://www.dropbox.com/scl/fi/adcd8mr5quejbdbwxnc36/2.png?rlkey=xstonejc9aeknivrl43j71pqg&st=5ali7ojx&dl=0&raw=1 "
             alt="Ilustrasi website bisnis digital yang menunjukkan desain responsif dan antarmuka modern"
-            className="w-full max-w-md md:max-w-lg rounded-xl shadow-sm transform transition-transform duration-500 hover:scale-105 md:translate-x-0"
+            className="w-full max-w-md md:max-w-lg rounded-xl shadow-sm object-cover transform transition-transform duration-500 hover:scale-105"
             loading="lazy"
           />
         </motion.div>
