@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Tilt from 'react-parallax-tilt';
 
 const PromoPage = () => {
   const [countdown, setCountdown] = useState(15 * 60);
@@ -47,109 +48,114 @@ const PromoPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700 to-blue-600 text-white flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-purple-800 via-blue-700 to-indigo-800 text-white flex flex-col items-center justify-center p-6 space-y-8">
       <Helmet>
         <title>Promo Website Hemat</title>
+        <meta
+          name="description"
+          content="Dapatkan website profesional dengan harga terjangkau hanya dalam waktu terbatas!"
+        />
       </Helmet>
 
       <motion.h1
-        className="text-4xl md:text-5xl font-bold text-center"
+        className="text-5xl font-bold text-center drop-shadow-lg"
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
-        Promo Spesial Website 🚀
+        🚀 Promo Spesial Website
       </motion.h1>
 
-      <p className="mt-3 text-lg text-center text-white/80 max-w-md">
-        Dapatkan website profesional dengan harga terjangkau. Promo hanya
-        berlaku:
+      <p className="text-lg text-center text-white/90 max-w-xl">
+        Dapatkan website profesional dengan harga terjangkau. Promo hanya berlaku:
       </p>
 
-      <div className="text-3xl font-mono bg-white text-purple-700 rounded-full px-6 py-2 my-4 shadow-md">
+      <div className="text-4xl font-mono bg-white text-purple-700 rounded-full px-8 py-3 shadow-xl animate-pulse">
         ⏳ {formatTime(countdown)}
       </div>
 
       <Link
         to="#form"
-        className="mt-3 bg-yellow-400 text-black font-semibold px-5 py-2 rounded-full hover:bg-yellow-500 transition"
+        className="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-full hover:bg-yellow-500 transition transform hover:scale-105 shadow-lg"
       >
         Klaim Promo Sekarang
       </Link>
 
-      {/* Paket Section */}
       <motion.section
-        className="mt-10 max-w-lg w-full bg-white rounded-xl text-gray-800 p-6 shadow-md"
+        className="max-w-lg w-full"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <h2 className="text-2xl font-semibold text-center mb-4">
-          Paket Hemat Rp750.000
-        </h2>
-        <ul className="list-disc list-inside space-y-2">
-          {paketItems.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
-        </ul>
+        <Tilt glareEnable={true} glareMaxOpacity={0.2} scale={1.02}>
+          <div className="bg-white rounded-xl text-gray-800 p-6 shadow-2xl">
+            <h2 className="text-2xl font-semibold text-center mb-4">
+              🎯 Paket Hemat Rp750.000
+            </h2>
+            <ul className="list-disc list-inside space-y-2 text-sm">
+              {paketItems.map((item, i) => (
+                <li key={i} className="flex items-start">
+                  <span className="mr-2 mt-1 text-green-500">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Tilt>
       </motion.section>
 
-      {/* Form Section */}
       <motion.section
         id="form"
-        className="mt-10 max-w-md w-full bg-white rounded-xl text-gray-800 p-6 shadow-md"
+        className="max-w-md w-full"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
       >
-        <h3 className="text-2xl font-semibold text-center mb-4">
-          Klaim Sekarang
-        </h3>
-        {success ? (
-          <p className="text-green-500 font-bold text-center">
-            🎉 Pesanan Berhasil Terkirim!
-          </p>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="nama"
-              placeholder="Nama Lengkap"
-              value={formData.nama}
-              onChange={handleChange}
-              required
-              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            <input
-              type="tel"
-              name="nohp"
-              placeholder="No. HP"
-              value={formData.nohp}
-              onChange={handleChange}
-              required
-              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg transition"
-            >
-              {loading ? "Mengirim..." : "Kirim Pesanan"}
-            </button>
-          </form>
-        )}
+        <div className="bg-white rounded-xl text-gray-800 p-6 shadow-2xl">
+          <h3 className="text-2xl font-semibold text-center mb-4">
+            📩 Klaim Sekarang
+          </h3>
+
+          <AnimatePresence mode="wait">
+            {success ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="text-green-500 font-bold text-center"
+              >
+                🎉 Pesanan Berhasil Terkirim!
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {['nama', 'email', 'nohp'].map((field, i) => (
+                  <div key={i} className="relative">
+                    <input
+                      type={field === 'email' ? 'email' : field === 'nohp' ? 'tel' : 'text'}
+                      name={field}
+                      placeholder={field === 'nohp' ? 'No. HP' : field === 'nama' ? 'Nama Lengkap' : 'Email'}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      required
+                      className="w-full rounded-lg border border-gray-300 p-3 pl-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                    />
+                  </div>
+                ))}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 rounded-lg transition-all transform hover:scale-105 shadow-md"
+                >
+                  {loading ? "Mengirim..." : "Kirim Pesanan"}
+                </button>
+              </form>
+            )}
+          </AnimatePresence>
+        </div>
       </motion.section>
 
-      <Link to="/" className="mt-4 text-sm text-white/80 hover:underline">
+      <Link to="/" className="text-sm text-white/80 hover:underline">
         ← Kembali ke Beranda
       </Link>
     </div>
