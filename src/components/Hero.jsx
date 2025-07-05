@@ -1,30 +1,38 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaReact, FaWordpress, FaNodeJs } from "react-icons/fa";
+import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 
 const Hero = () => {
+  const techStack = [
+    { name: "React", icon: <FaReact className="text-[#61DAFB]" size={24} /> },
+    { name: "Next.js", icon: <SiNextdotjs className="text-white" size={24} /> },
+    {
+      name: "WordPress",
+      icon: <FaWordpress className="text-[#21759B]" size={24} />,
+    },
+    {
+      name: "Tailwind",
+      icon: <SiTailwindcss className="text-[#38BDF8]" size={24} />,
+    },
+    {
+      name: "Node.js",
+      icon: <FaNodeJs className="text-[#8CC84B]" size={24} />,
+    },
+  ];
+
   return (
     <section className="relative w-full min-h-screen bg-gradient-to-br from-[#1E3A8A] via-[#1E40AF] to-[#2563EB] flex items-center justify-center overflow-hidden">
-      {/* Animated Background Elements */}
+      {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden z-0">
-        {/* Floating circles for depth */}
         <motion.div
           className="absolute top-20 left-10 w-32 h-32 rounded-full bg-blue-400 opacity-10"
-          animate={{
-            y: [0, 30, 0],
-            x: [0, 20, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           className="absolute bottom-1/4 right-20 w-48 h-48 rounded-full bg-indigo-400 opacity-10"
-          animate={{
-            y: [0, -40, 0],
-            x: [0, -30, 0],
-          }}
+          animate={{ y: [0, -40, 0], x: [0, -30, 0] }}
           transition={{
             duration: 20,
             repeat: Infinity,
@@ -32,13 +40,11 @@ const Hero = () => {
             delay: 2,
           }}
         />
-
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48cGF0aCBkPSJNMCAzMEg2ME0zMCAwVjYwIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] opacity-20" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48cGF0aCBkPSJNMCAzNEg2ME0zMCAwVjYwIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] opacity-20" />
       </div>
 
       <div className="max-w-7xl w-full px-6 text-white flex flex-col md:flex-row items-center justify-between gap-10 z-10 py-20">
-        {/* LEFT TEXT */}
+        {/* Left Content */}
         <motion.div
           className="w-full md:w-1/2 text-center md:text-left space-y-6"
           initial={{ opacity: 0, y: 50 }}
@@ -109,39 +115,66 @@ const Hero = () => {
             </motion.button>
           </div>
 
-          <div className="flex items-center justify-center md:justify-start gap-4 pt-4">
-            <div className="flex -space-x-2">
-              {[1, 2, 3].map((item) => (
-                <img
-                  key={item}
-                  src={`https://randomuser.me/api/portraits/${
-                    item % 2 === 0 ? "women" : "men"
-                  }/${item + 20}.jpg`}
-                  alt="Client"
-                  className="w-10 h-10 rounded-full border-2 border-white/50"
-                />
-              ))}
-            </div>
-            <div className="text-sm text-blue-100">
-              <p>Trusted by 500+ businesses</p>
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className="w-4 h-4 text-yellow-300"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
+          {/* Tech Stack Section */}
+          <div className="pt-6">
+            <div className="flex items-center justify-center md:justify-start gap-4 mb-3">
+              <div className="flex -space-x-2">
+                {[1, 2, 3].map((item) => (
+                  <img
+                    key={item}
+                    src={`https://randomuser.me/api/portraits/${
+                      item % 2 === 0 ? "women" : "men"
+                    }/${item + 20}.jpg`}
+                    alt="Client"
+                    className="w-10 h-10 rounded-full border-2 border-white/50"
+                  />
                 ))}
-                <span className="ml-1">5.0 (200+ reviews)</span>
               </div>
+              <div className="text-left">
+                <p className="text-sm text-blue-100">
+                  Trusted by 500+ businesses
+                </p>
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className="w-4 h-4 text-yellow-300"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                  <span className="ml-1 text-xs text-blue-100">
+                    5.0 (200+ reviews)
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-sm text-blue-100 mb-3">
+              Dibangun dengan teknologi terbaik:
+            </p>
+            <div className="flex flex-wrap gap-3 items-center justify-center md:justify-start">
+              {techStack.map((tech) => (
+                <motion.div
+                  key={tech.name}
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  className="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg backdrop-blur-sm border border-white/10"
+                >
+                  <div className="flex items-center justify-center">
+                    {tech.icon}
+                  </div>
+                  <span className="text-xs font-medium text-white">
+                    {tech.name}
+                  </span>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.div>
 
-        {/* RIGHT IMAGE (Ilustrasi Website) */}
+        {/* Right Image Section */}
         <motion.div
           className="w-full md:w-1/2 flex justify-center relative"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -158,7 +191,6 @@ const Hero = () => {
               whileHover={{ scale: 1.02 }}
             />
 
-            {/* Decorative elements around the image */}
             <motion.div
               className="absolute -top-6 -left-6 w-32 h-32 rounded-xl bg-blue-500/20 border border-blue-400/30 z-0"
               initial={{ opacity: 0, x: -20, y: -20 }}
@@ -175,7 +207,6 @@ const Hero = () => {
               viewport={{ once: true }}
             />
 
-            {/* Floating device mockups */}
             <motion.div
               className="absolute -bottom-10 -right-10 w-24 h-24 bg-white rounded-lg shadow-xl overflow-hidden border border-white/30"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -191,7 +222,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Scrolling indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}

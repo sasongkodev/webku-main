@@ -9,133 +9,6 @@ import {
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Color palette
-const colors = {
-  primary: "#4361ee", // Vibrant blue
-  secondary: "#3f37c9", // Deep blue
-  accent: "#4cc9f0", // Light blue
-  dark: "#1a1a2e", // Dark navy
-  light: "#f8f9fa", // Off-white
-  success: "#4ade80", // Green
-  warning: "#fbbf24", // Amber
-  danger: "#f87171", // Red
-  gray: "#6b7280", // Gray
-};
-
-// NavItem component with realistic hover effects
-const NavItem = ({ children, to, href, isMobile, closeMenu, isActive }) => {
-  const baseClasses = "font-medium transition-all duration-300";
-  const mobileClasses = `py-3 px-4 w-full text-left ${
-    isActive ? "text-white bg-primary" : "text-gray-800 hover:bg-gray-100"
-  }`;
-  const desktopClasses = `px-4 py-2 rounded-lg ${
-    isActive
-      ? "text-primary font-semibold"
-      : "text-gray-700 hover:text-primary hover:bg-gray-50/50"
-  }`;
-
-  const content = (
-    <motion.div
-      whileHover={{ scale: isMobile ? 1 : 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="flex items-center"
-    >
-      {children}
-      {isActive && !isMobile && (
-        <motion.span
-          className="ml-2 w-1.5 h-1.5 rounded-full bg-primary"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 500 }}
-        />
-      )}
-    </motion.div>
-  );
-
-  if (to) {
-    return (
-      <Link
-        to={to}
-        className={`${baseClasses} ${
-          isMobile ? mobileClasses : desktopClasses
-        }`}
-        onClick={closeMenu}
-      >
-        {content}
-      </Link>
-    );
-  }
-
-  return (
-    <a
-      href={href}
-      className={`${baseClasses} ${isMobile ? mobileClasses : desktopClasses}`}
-      onClick={closeMenu}
-    >
-      {content}
-    </a>
-  );
-};
-
-// Navigation items component with active state tracking
-const NavItems = ({ isMobile = false, closeMenu, currentSection }) => (
-  <>
-    <NavItem
-      to="/"
-      isMobile={isMobile}
-      closeMenu={closeMenu}
-      isActive={currentSection === "home"}
-    >
-      Home
-    </NavItem>
-    <NavItem
-      href="#layanan"
-      isMobile={isMobile}
-      closeMenu={closeMenu}
-      isActive={currentSection === "layanan"}
-    >
-      Layanan
-    </NavItem>
-    <NavItem
-      href="#portfolio"
-      isMobile={isMobile}
-      closeMenu={closeMenu}
-      isActive={currentSection === "portfolio"}
-    >
-      Portfolio
-    </NavItem>
-    <NavItem
-      href="#harga"
-      isMobile={isMobile}
-      closeMenu={closeMenu}
-      isActive={currentSection === "harga"}
-    >
-      Harga
-    </NavItem>
-    <NavItem
-      href="#kontak"
-      isMobile={isMobile}
-      closeMenu={closeMenu}
-      isActive={currentSection === "kontak"}
-    >
-      Kontak
-    </NavItem>
-    <NavItem
-      to="/promo"
-      isMobile={isMobile}
-      closeMenu={closeMenu}
-      isActive={currentSection === "promo"}
-    >
-      <span className="relative">
-        Promo
-        <span className="absolute -top-2 -right-4 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full animate-pulse">
-          HOT
-        </span>
-      </span>
-    </NavItem>
-  </>
-);
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -143,7 +16,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 10);
 
       // Section detection logic
       const sections = ["home", "layanan", "portfolio", "harga", "kontak"];
@@ -172,121 +45,185 @@ const Header = () => {
 
   const closeMenu = () => setIsMenuOpen(false);
 
+  // NavItem component with color psychology
+  const NavItem = ({ children, to, href, isMobile, isActive }) => {
+    const content = (
+      <motion.span
+        whileHover={{ scale: isMobile ? 1 : 1.03 }}
+        whileTap={{ scale: 0.97 }}
+        className="relative"
+      >
+        {children}
+        {isActive && !isMobile && (
+          <motion.span
+            className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+        )}
+      </motion.span>
+    );
+
+    const className = `text-sm transition-colors ${
+      isMobile
+        ? `py-3 px-4 w-full text-left ${
+            isActive
+              ? "text-blue-600 font-medium"
+              : "text-gray-600 hover:text-blue-500"
+          }`
+        : `px-3 py-2 ${
+            isActive
+              ? "text-blue-600 font-medium"
+              : "text-gray-600 hover:text-blue-500"
+          }`
+    }`;
+
+    if (to) {
+      return (
+        <Link to={to} className={className} onClick={closeMenu}>
+          {content}
+        </Link>
+      );
+    }
+
+    return (
+      <a href={href} className={className} onClick={closeMenu}>
+        {content}
+      </a>
+    );
+  };
+
+  // Navigation items component
+  const NavItems = ({ isMobile = false, currentSection }) => (
+    <>
+      <NavItem to="/" isMobile={isMobile} isActive={currentSection === "home"}>
+        Home
+      </NavItem>
+      <NavItem
+        href="#layanan"
+        isMobile={isMobile}
+        isActive={currentSection === "layanan"}
+      >
+        Layanan
+      </NavItem>
+      <NavItem
+        href="#portfolio"
+        isMobile={isMobile}
+        isActive={currentSection === "portfolio"}
+      >
+        Portfolio
+      </NavItem>
+      <NavItem
+        href="#harga"
+        isMobile={isMobile}
+        isActive={currentSection === "harga"}
+      >
+        Harga
+      </NavItem>
+      <NavItem
+        href="#kontak"
+        isMobile={isMobile}
+        isActive={currentSection === "kontak"}
+      >
+        Kontak
+      </NavItem>
+      <NavItem
+        to="/promo"
+        isMobile={isMobile}
+        isActive={currentSection === "promo"}
+      >
+        <span className="relative">
+          Promo
+          <span className="absolute -top-1 -right-4 bg-orange-500 text-white text-[10px] px-1 py-0.5 rounded-full">
+            HOT
+          </span>
+        </span>
+      </NavItem>
+    </>
+  );
+
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        isScrolled ? "bg-white/90 backdrop-blur-lg shadow-md" : "bg-white"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-sm border-b border-gray-100" : "bg-white"
       }`}
-      style={{
-        borderBottom: isScrolled
-          ? `1px solid ${colors.primary}20`
-          : "1px solid transparent",
-      }}
     >
-      {/* Top contact bar */}
-      <div className="bg-dark text-white text-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-2">
-          <div className="flex items-center space-x-4">
+      {/* Top contact bar with trust-building blue */}
+      <div className="bg-blue-600 text-blue-50 text-xs">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-2">
+          <div className="flex items-center space-x-5">
             <a
-              href="tel:+6281234567890"
-              className="flex items-center hover:text-accent transition-colors"
+              href="tel:+6281574741954"
+              className="flex items-center hover:text-white transition-colors"
             >
-              <FaPhoneAlt className="mr-2" />
-              +62 812-3456-7890
+              <FaPhoneAlt className="mr-1.5 text-[0.8em]" />
+              +62 815-7474-1954
             </a>
             <a
-              href="mailto:info@webhemat.com"
-              className="flex items-center hover:text-accent transition-colors"
+              href="mailto:webhemat5@gmail.com"
+              className="flex items-center hover:text-white transition-colors"
             >
-              <FaEnvelope className="mr-2" />
-              info@webhemat.com
+              <FaEnvelope className="mr-1.5 text-[0.8em]" />
+              webhemat5@gmail.com
             </a>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
-            <span className="text-gray-400">Jam Kerja: 08:00 - 17:00</span>
+          <div className="hidden md:flex items-center">
+            <span className="text-blue-100">Jam Kerja: 08:00 - 17:00</span>
           </div>
         </div>
       </div>
 
       {/* Main navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Logo with 3D effect */}
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo with blue for trust and professionalism */}
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
-            <Link to="/" className="flex items-center group">
-              <motion.div className="relative" whileHover={{ y: -2 }}>
-                <div
-                  className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent relative z-10 group-hover:drop-shadow-lg transition-all duration-300"
-                  style={{ textShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
-                >
-                  Web<span className="font-extrabold">Hemat</span>
-                </div>
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-primary to-secondary blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300"
-                  style={{ zIndex: 0 }}
-                />
-              </motion.div>
-              <motion.span
-                className="ml-2 bg-gradient-to-br from-primary to-secondary text-white text-xs px-2 py-1 rounded-full shadow-md"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2 }}
-                whileHover={{ scale: 1.1 }}
-              >
+            <Link to="/" className="flex items-center">
+              <span className="text-xl font-semibold text-blue-600 tracking-tight">
+                WebHemat
+              </span>
+              <span className="ml-2 bg-blue-600 text-white text-[10px] px-1.5 py-0.5 rounded">
                 PRO
-              </motion.span>
+              </span>
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2">
+          <nav className="hidden md:flex items-center space-x-1">
             <NavItems currentSection={currentSection} />
           </nav>
 
-          {/* Desktop CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
+          {/* Desktop CTA Button with green for action and growth */}
+          <div className="hidden md:flex items-center">
             <motion.a
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/6281574741954"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center bg-success hover:bg-green-600 text-white px-4 py-2.5 rounded-lg transition-all duration-300 shadow-md"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: `0 4px 20px ${colors.success}40`,
-              }}
-              whileTap={{ scale: 0.95 }}
+              className="flex items-center bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition-all duration-200 text-sm shadow-md"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
-              <FaWhatsapp className="mr-2 text-lg" />
-              <span className="font-semibold">Konsultasi Gratis</span>
+              <FaWhatsapp className="mr-2" />
+              Konsultasi Gratis
             </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 -mr-2 focus:outline-none relative"
+            className="md:hidden p-2 -mr-2 focus:outline-none"
             aria-label={isMenuOpen ? "Tutup menu" : "Buka menu"}
-            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             {isMenuOpen ? (
-              <FaTimes size={24} className="text-dark" />
+              <FaTimes className="text-gray-600" />
             ) : (
-              <>
-                <FaBars size={24} className="text-dark" />
-                {currentSection !== "home" && (
-                  <motion.span
-                    className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring" }}
-                  />
-                )}
-              </>
+              <FaBars className="text-gray-600" />
             )}
           </motion.button>
         </div>
@@ -299,42 +236,40 @@ const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-white shadow-2xl overflow-hidden"
-            style={{ borderTop: `1px solid ${colors.gray}20` }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="md:hidden bg-white shadow-lg overflow-hidden"
           >
-            <div className="px-4 pt-2 pb-6 space-y-2">
+            <div className="px-4 pt-2 pb-5 space-y-1">
               <NavItems
                 isMobile={true}
                 closeMenu={closeMenu}
                 currentSection={currentSection}
               />
 
-              <div className="pt-4 mt-4 border-t border-gray-100">
+              <div className="pt-3 mt-3 border-t border-gray-100">
                 <motion.a
-                  href="https://wa.me/6281234567890"
+                  href="https://wa.me/6281574741954"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center bg-success hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-all duration-300 shadow-md"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-md transition-all duration-200 text-sm shadow-md"
+                  whileTap={{ scale: 0.97 }}
                 >
-                  <FaWhatsapp className="mr-2 text-lg" />
-                  <span className="font-semibold">Chat via WhatsApp</span>
+                  <FaWhatsapp className="mr-2" />
+                  Chat via WhatsApp
                 </motion.a>
 
-                <div className="flex justify-center space-x-4 mt-4">
+                <div className="flex justify-center space-x-4 mt-3">
                   <a
-                    href="tel:+6281234567890"
-                    className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                    href="tel:+6281574741954"
+                    className="p-2 bg-blue-100 hover:bg-blue-200 rounded-full transition-colors text-blue-600"
                   >
-                    <FaPhoneAlt className="text-gray-700" />
+                    <FaPhoneAlt className="text-sm" />
                   </a>
                   <a
-                    href="mailto:info@webhemat.com"
-                    className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                    href="mailto:webhemat5@gmail.com"
+                    className="p-2 bg-blue-100 hover:bg-blue-200 rounded-full transition-colors text-blue-600"
                   >
-                    <FaEnvelope className="text-gray-700" />
+                    <FaEnvelope className="text-sm" />
                   </a>
                 </div>
               </div>
