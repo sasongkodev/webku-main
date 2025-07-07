@@ -5,15 +5,15 @@ import ModalImage from "./ModalImage";
 
 const projects = [
   {
-    title: "Travel Website",
+    title: "Globe Trekker",
     image:
-      "https://www.dropbox.com/scl/fi/39k2ibbd7t7c8ry2v82ra/web2.png?rlkey=giox4e48tyjpb9ovrlztq4hul&st=f26dlz44&dl=0&raw=1",
+      "https://www.dropbox.com/scl/fi/c43ijfvg80xr4vcxw12qn/Screenshot-from-2025-07-07-12-56-44.png?rlkey=434fhj7qd722hml230997rirj&st=fecrhk7w&dl=0&raw=1",
     category: "Travel & Tourism",
     description:
       "Website booking perjalanan dengan integrasi pembayaran dan sistem manajemen destinasi",
     tags: ["React", "Node.js", "MongoDB"],
     year: "2023",
-    demoUrl: "https://travel-example.com",
+    demoUrl: "https://globe-trekker-nu.vercel.app/",
     codeUrl: "https://github.com/example/travel-website",
   },
   {
@@ -128,7 +128,7 @@ const Portfolio = () => {
         <meta property="og:url" content="https://www.webhemat.com/portfolio" />
         <meta
           property="og:image"
-          content="https://www.dropbox.com/scl/fi/39k2ibbd7t7c8ry2v82ra/web2.png?rlkey=giox4e48tyjpb9ovrlztq4hul&st=f26dlz44&dl=0&raw=1"
+          content="https://www.dropbox.com/scl/fi/c43ijfvg80xr4vcxw12qn/Screenshot-from-2025-07-07-12-56-44.png?rlkey=434fhj7qd722hml230997rirj&st=fecrhk7w&dl=0&raw=1"
         />
         <meta property="og:site_name" content="WebHemat" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -139,7 +139,7 @@ const Portfolio = () => {
         />
         <meta
           name="twitter:image"
-          content="https://www.dropbox.com/scl/fi/39k2ibbd7t7c8ry2v82ra/web2.png?rlkey=giox4e48tyjpb9ovrlztq4hul&st=f26dlz44&dl=0&raw=1"
+          content="https://www.dropbox.com/scl/fi/c43ijfvg80xr4vcxw12qn/Screenshot-from-2025-07-07-12-56-44.png?rlkey=434fhj7qd722hml230997rirj&st=fecrhk7w&dl=0&raw=1"
         />
       </Helmet>
 
