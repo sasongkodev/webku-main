@@ -17,15 +17,15 @@ const projects = [
     codeUrl: "https://github.com/example/travel-website",
   },
   {
-    title: "Sushi Bar",
+    title: "AttaFood",
     image:
-      "https://www.dropbox.com/scl/fi/f7yxtsf6g8f3l356do00r/web.png?rlkey=n1lf5epol5tqmns4veum6e5kz&st=cjkkduvd&dl=0&raw=1",
-    category: "Restoran",
+      "https://www.dropbox.com/scl/fi/mg910ifrpjq1hagrus59p/Screenshot-from-2025-07-08-11-05-19.png?rlkey=dwmemtdrzm50y1vi6lccknny1&st=8ynop78k&raw=1",
+    category: "Food",
     description:
-      "Website menu online dengan sistem pemesanan langsung dan manajemen meja",
-    tags: ["Next.js", "Tailwind CSS", "Firebase"],
-    year: "2023",
-    demoUrl: "https://sushi-example.com",
+      " Website  produsen makanan yang Inovatif dan konsisten membuat produk berkualitas",
+    tags: ["Wordpress"],
+    year: "2024",
+    demoUrl: "https://altaffood.id/",
     codeUrl: "https://github.com/example/sushi-bar",
   },
   {
@@ -432,3 +432,7 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
+
+
+
