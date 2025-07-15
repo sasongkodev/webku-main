@@ -10,9 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "@tailwindcss/forms": "^0.5.10",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.16.0",
+    "framer-motion": "^12.23.5",
     "lucide-react": "^0.513.0",
     "react": "^19.1.0",
     "react-awesome-reveal": "^4.3.1",

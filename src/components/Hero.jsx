@@ -57,7 +57,6 @@ const Hero = () => {
               🚀 Transformasi Digital
             </p>
           </div>
-
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             <span className="inline-block mb-3">
               Tingkatkan Bisnis Anda dengan
@@ -75,13 +74,11 @@ const Hero = () => {
               />
             </span>
           </h1>
-
           <p className="text-lg text-blue-100 max-w-lg mx-auto md:mx-0 leading-relaxed">
             Solusi lengkap untuk bisnis digital Anda. Website cepat, aman, dan
             SEO-friendly yang siap membantu Anda menjangkau lebih banyak
             pelanggan.
           </p>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <motion.button
               whileHover={{
@@ -89,6 +86,12 @@ const Hero = () => {
                 boxShadow: "0 0 25px rgba(59, 130, 246, 0.4)",
               }}
               whileTap={{ scale: 0.98 }}
+              onClick={() =>
+                window.open(
+                  "https://wa.me/628985884161?text=Halo%20saya%20tertarik%20untuk%20konsultasi%20gratis.",
+                  "_blank"
+                )
+              }
               className="relative overflow-hidden bg-white hover:bg-slate-100 text-blue-900 font-semibold px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <span className="relative z-10">Konsultasi Gratis</span>
@@ -99,7 +102,6 @@ const Hero = () => {
               />
               <span className="ml-2 relative z-10">→</span>
             </motion.button>
-
             <motion.button
               whileHover={{
                 scale: 1.05,
@@ -114,7 +116,6 @@ const Hero = () => {
               </span>
             </motion.button>
           </div>
-
           {/* Tech Stack Section */}
           <div className="pt-6">
             <div className="flex items-center justify-center md:justify-start gap-4 mb-3">
@@ -122,7 +123,7 @@ const Hero = () => {
                 {[1, 2, 3].map((item) => (
                   <img
                     key={item}
-                    src={`https://randomuser.me/api/portraits/${
+                    src={` https://randomuser.me/api/portraits/ ${
                       item % 2 === 0 ? "women" : "men"
                     }/${item + 20}.jpg`}
                     alt="Client"
@@ -151,7 +152,6 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-
             <p className="text-sm text-blue-100 mb-3">
               Dibangun dengan teknologi terbaik:
             </p>
@@ -190,7 +190,6 @@ const Hero = () => {
               loading="lazy"
               whileHover={{ scale: 1.02 }}
             />
-
             <motion.div
               className="absolute -top-6 -left-6 w-32 h-32 rounded-xl bg-blue-500/20 border border-blue-400/30 z-0"
               initial={{ opacity: 0, x: -20, y: -20 }}
@@ -198,7 +197,6 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             />
-
             <motion.div
               className="absolute -bottom-6 -right-6 w-40 h-40 rounded-xl bg-indigo-500/20 border border-indigo-400/30 z-0"
               initial={{ opacity: 0, x: 20, y: 20 }}
@@ -206,7 +204,6 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             />
-
             <motion.div
               className="absolute -bottom-10 -right-10 w-24 h-24 bg-white rounded-lg shadow-xl overflow-hidden border border-white/30"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import {
   FaBars,
   FaTimes,
@@ -14,13 +13,14 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentSection, setCurrentSection] = useState("home");
 
+  // Daftar section
+  const sections = ["home", "layanan", "portfolio", "harga", "kontak"];
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
 
-      // Section detection logic
-      const sections = ["home", "layanan", "portfolio", "harga", "kontak"];
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 80;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -45,13 +45,26 @@ const Header = () => {
 
   const closeMenu = () => setIsMenuOpen(false);
 
-  // NavItem component with color psychology
-  const NavItem = ({ children, to, href, isMobile, isActive }) => {
-    const content = (
-      <motion.span
-        whileHover={{ scale: isMobile ? 1 : 1.03 }}
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 80,
+        behavior: "smooth",
+      });
+    }
+    closeMenu();
+  };
+
+  const NavItem = ({ children, to, isMobile, isActive }) => {
+    return (
+      <motion.button
+        whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
-        className="relative"
+        onClick={() => scrollToSection(to)}
+        className={`relative text-sm font-medium transition-colors px-3 py-2 ${
+          isMobile ? "w-full text-left" : ""
+        } ${isActive ? "text-blue-600" : "text-gray-600 hover:text-blue-500"}`}
       >
         {children}
         {isActive && !isMobile && (
@@ -62,86 +75,9 @@ const Header = () => {
             transition={{ duration: 0.3 }}
           />
         )}
-      </motion.span>
-    );
-
-    const className = `text-sm transition-colors ${
-      isMobile
-        ? `py-3 px-4 w-full text-left ${
-            isActive
-              ? "text-blue-600 font-medium"
-              : "text-gray-600 hover:text-blue-500"
-          }`
-        : `px-3 py-2 ${
-            isActive
-              ? "text-blue-600 font-medium"
-              : "text-gray-600 hover:text-blue-500"
-          }`
-    }`;
-
-    if (to) {
-      return (
-        <Link to={to} className={className} onClick={closeMenu}>
-          {content}
-        </Link>
-      );
-    }
-
-    return (
-      <a href={href} className={className} onClick={closeMenu}>
-        {content}
-      </a>
+      </motion.button>
     );
   };
-
-  // Navigation items component
-  const NavItems = ({ isMobile = false, currentSection }) => (
-    <>
-      <NavItem to="/" isMobile={isMobile} isActive={currentSection === "home"}>
-        Home
-      </NavItem>
-      <NavItem
-        href="#layanan"
-        isMobile={isMobile}
-        isActive={currentSection === "layanan"}
-      >
-        Layanan
-      </NavItem>
-      <NavItem
-        href="#portfolio"
-        isMobile={isMobile}
-        isActive={currentSection === "portfolio"}
-      >
-        Portfolio
-      </NavItem>
-      <NavItem
-        href="#harga"
-        isMobile={isMobile}
-        isActive={currentSection === "harga"}
-      >
-        Harga
-      </NavItem>
-      <NavItem
-        href="#kontak"
-        isMobile={isMobile}
-        isActive={currentSection === "kontak"}
-      >
-        Kontak
-      </NavItem>
-      <NavItem
-        to="/promo"
-        isMobile={isMobile}
-        isActive={currentSection === "promo"}
-      >
-        <span className="relative">
-          Promo
-          <span className="absolute -top-1 -right-4 bg-orange-500 text-white text-[10px] px-1 py-0.5 rounded-full">
-            HOT
-          </span>
-        </span>
-      </NavItem>
-    </>
-  );
 
   return (
     <header
@@ -149,7 +85,7 @@ const Header = () => {
         isScrolled ? "bg-white shadow-sm border-b border-gray-100" : "bg-white"
       }`}
     >
-      {/* Top contact bar with trust-building blue */}
+      {/* Top contact bar */}
       <div className="bg-blue-600 text-blue-50 text-xs">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-2">
           <div className="flex items-center space-x-5">
@@ -174,34 +110,58 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Main navigation */}
+      {/* Main Navigation */}
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-16">
-          {/* Logo with blue for trust and professionalism */}
+          {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <Link to="/" className="flex items-center">
+            <button
+              onClick={() => scrollToSection("home")}
+              className="flex items-center focus:outline-none"
+            >
               <span className="text-xl font-semibold text-blue-600 tracking-tight">
                 WebHemat
               </span>
               <span className="ml-2 bg-blue-600 text-white text-[10px] px-1.5 py-0.5 rounded">
                 PRO
               </span>
-            </Link>
+            </button>
           </motion.div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            <NavItems currentSection={currentSection} />
+            {sections.map((section) => (
+              <NavItem
+                key={section}
+                to={section}
+                isMobile={false}
+                isActive={currentSection === section}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </NavItem>
+            ))}
+            <NavItem
+              to="promo"
+              isMobile={false}
+              isActive={currentSection === "promo"}
+            >
+              <span className="relative">
+                Promo
+                <span className="absolute -top-1 -right-4 bg-orange-500 text-white text-[10px] px-1 py-0.5 rounded-full">
+                  HOT
+                </span>
+              </span>
+            </NavItem>
           </nav>
 
-          {/* Desktop CTA Button with green for action and growth */}
+          {/* Desktop CTA Button */}
           <div className="hidden md:flex items-center">
             <motion.a
-              href="https://wa.me/6281574741954"
+              href="https://wa.me/6281574741954 "
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition-all duration-200 text-sm shadow-md"
@@ -240,15 +200,32 @@ const Header = () => {
             className="md:hidden bg-white shadow-lg overflow-hidden"
           >
             <div className="px-4 pt-2 pb-5 space-y-1">
-              <NavItems
+              {sections.map((section) => (
+                <NavItem
+                  key={section}
+                  to={section}
+                  isMobile={true}
+                  isActive={currentSection === section}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </NavItem>
+              ))}
+              <NavItem
+                to="promo"
                 isMobile={true}
-                closeMenu={closeMenu}
-                currentSection={currentSection}
-              />
+                isActive={currentSection === "promo"}
+              >
+                <span className="relative">
+                  Promo
+                  <span className="absolute -top-1 -right-4 bg-orange-500 text-white text-[10px] px-1 py-0.5 rounded-full">
+                    HOT
+                  </span>
+                </span>
+              </NavItem>
 
               <div className="pt-3 mt-3 border-t border-gray-100">
                 <motion.a
-                  href="https://wa.me/6281574741954"
+                  href="https://wa.me/6281574741954 "
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-md transition-all duration-200 text-sm shadow-md"

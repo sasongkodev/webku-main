@@ -87,7 +87,7 @@ const Pricing = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content="https://www.webhemat.com/paket-harga"
+          content="https://www.webhemat.com/paket-harga "
         />
         <meta
           property="og:image"
@@ -102,16 +102,16 @@ const Pricing = () => {
         />
         <meta
           name="twitter:image"
-          content="https://www.dropbox.com/scl/fi/39k2ibbd7t7c8ry2v82ra/web2.png?rlkey=giox4e48tyjpb9ovrlztq4hul&st=f26dlz44&dl=0&raw=1"
+          content=" https://www.dropbox.com/scl/fi/39k2ibbd7t7c8ry2v82ra/web2.png?rlkey=giox4e48tyjpb9ovrlztq4hul&st=f26dlz44&dl=0&raw=1"
         />
         <script type="application/ld+json">
           {JSON.stringify({
-            "@context": "https://schema.org",
+            "@context": " https://schema.org ",
             "@type": "WebPage",
             name: "Paket Harga Website - WebHemat",
             description:
               "Pilih paket pembuatan website yang sesuai dengan kebutuhan bisnismu. Mulai dari Rp 900.000 hingga Rp 3.000.000.",
-            url: "https://www.webhemat.com/paket-harga",
+            url: "https://www.webhemat.com/paket-harga ",
             image:
               "https://www.dropbox.com/scl/fi/39k2ibbd7t7c8ry2v82ra/web2.png?rlkey=giox4e48tyjpb9ovrlztq4hul&st=f26dlz44&dl=0&raw=1",
             mainEntity: {
@@ -121,7 +121,7 @@ const Pricing = () => {
                 position: index + 1,
                 name: pkg.name,
                 description: `${pkg.price} - ${pkg.features[0]}`,
-                url: `https://www.webhemat.com/paket/${pkg.name
+                url: ` https://www.webhemat.com/paket/ ${pkg.name
                   .toLowerCase()
                   .replace(/\s+/g, "-")}`,
               })),
@@ -138,7 +138,7 @@ const Pricing = () => {
         id="pricing"
         className="relative py-20 px-4 bg-gradient-to-b from-gray-50 to-white"
       >
-        {/* Decorative elements */}
+        {/* Decorative Blobs */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
           <div className="absolute top-0 left-0 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
@@ -146,6 +146,7 @@ const Pricing = () => {
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
+          {/* Section Header */}
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: -20 }}
@@ -177,6 +178,7 @@ const Pricing = () => {
             </motion.p>
           </motion.div>
 
+          {/* Pricing Cards Grid */}
           <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {packages.map((pkg, index) => (
               <motion.div
@@ -192,7 +194,6 @@ const Pricing = () => {
                     POPULAR
                   </div>
                 )}
-
                 <div
                   className={`h-full bg-white rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden ${
                     pkg.popular ? "border-t-4 border-amber-400" : ""
@@ -211,16 +212,15 @@ const Pricing = () => {
                         </h3>
                       </div>
                     </div>
-
                     <div className="mb-6">
                       <p className="text-3xl font-extrabold text-gray-900">
                         {pkg.price}
                         <span className="text-sm font-normal text-gray-500">
+                          {" "}
                           /sekali bayar
                         </span>
                       </p>
                     </div>
-
                     <ul className="space-y-3 mb-8">
                       {pkg.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
@@ -230,7 +230,6 @@ const Pricing = () => {
                       ))}
                     </ul>
                   </div>
-
                   <div className="px-6 pb-6">
                     <motion.button
                       whileHover={{
@@ -249,17 +248,29 @@ const Pricing = () => {
                         boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
                       }}
                       whileTap={{ scale: 0.98 }}
-                      className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
+                      className={`group relative overflow-hidden w-full py-3 px-6 rounded-lg font-bold text-white shadow-md transition-all duration-300 ${
                         pkg.popular
-                          ? `bg-gradient-to-r ${pkg.buttonColor} text-white shadow-lg`
-                          : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                          ? `bg-gradient-to-r ${pkg.buttonColor} shadow-lg`
+                          : `bg-gradient-to-r ${pkg.buttonColor}`
                       }`}
+                      onClick={() =>
+                        window.open(
+                          `https://wa.me/628985884161?text=Halo%20saya%20tertarik%20dengan%20${encodeURIComponent(
+                            pkg.name
+                          )}`,
+                          "_blank"
+                        )
+                      }
                     >
-                      <span className="relative z-10">
+                      <span className="relative z-10 flex items-center justify-center gap-2">
                         Pesan Sekarang
-                        <span className="absolute -right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
-                          →
+                        <span className="inline-block transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300">
+                          💬
                         </span>
+                      </span>
+                      <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+                      <span className="absolute inset-0 pointer-events-none">
+                        <span className="absolute -left-1/2 -top-1/2 w-full h-full bg-white opacity-10 rounded-full transform scale-0 group-hover:scale-150 transition-transform duration-700 ease-out"></span>
                       </span>
                     </motion.button>
                   </div>
@@ -268,7 +279,7 @@ const Pricing = () => {
             ))}
           </div>
 
-          {/* Additional Info */}
+          {/* Guarantee Info */}
           <motion.div
             className="mt-12 bg-blue-50 rounded-xl p-6 md:p-8 border border-blue-100"
             initial={{ opacity: 0 }}
@@ -292,7 +303,7 @@ const Pricing = () => {
             </div>
           </motion.div>
 
-          {/* CTA */}
+          {/* CTA Button */}
           <motion.div
             className="mt-16 text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -307,7 +318,13 @@ const Pricing = () => {
                 boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.4)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg"
+              className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg"
+              onClick={() =>
+                window.open(
+                  ` https://wa.me/628985884161?text=Saya%20ingin%20bertanya%20tentang%20paket%20custom`,
+                  "_blank"
+                )
+              }
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 Butuh Paket Khusus?
@@ -324,7 +341,7 @@ const Pricing = () => {
                   />
                 </svg>
               </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 hover:opacity-100 transition-opacity duration-300 -z-0"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
             </motion.button>
           </motion.div>
         </div>
