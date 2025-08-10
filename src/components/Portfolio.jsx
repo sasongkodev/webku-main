@@ -33,22 +33,21 @@ const projects = [
     image:
       "https://www.dropbox.com/scl/fi/7nx9k2cw863stax7fgcvm/dagangkuota.jpg?rlkey=m9app89dbwcw5zojkvai4ovt1&st=65o3ptia&raw=1",
     category: "Industri",
-    description:
-      "Website Riseller Kuota Jogja",
+    description: "Website Riseller Kuota Jogja",
     tags: ["Node Js", "React js", "Telwincss"],
     year: "2025",
     demoUrl: "https://dagangkuota.com",
   },
   {
-    title: "Laundry",
+    title: "Phising Kit",
     image:
-      "https://www.dropbox.com/scl/fi/33xp9bmjlc0frgoeowpms/web5.png?rlkey=g8xj2ii5gwscxm93z27bwx5q2&st=c3iw3kek&dl=0&raw=1",
+      "https://www.dropbox.com/scl/fi/aqan10u8hps723hpa33sd/phising-kit.png?rlkey=jxg2ws1zz4uzw5cnopm6kw6km&st=bzd98xx0&raw=1",
     category: "Layanan",
     description:
-      "Aplikasi manajemen laundry dengan tracking order dan notifikasi",
-    tags: ["Vue.js", "Laravel", "MySQL"],
-    year: "2023",
-    demoUrl: "https://laundry-example.com",
+      "Aplikasi Phising Store",
+    tags: ["Wordpress", "MySQL"],
+    year: "2024",
+    demoUrl: "https://webhemat.freshcraftkit.my.id/contoh2/home/",
   },
   {
     title: "Website Kesehatan",
