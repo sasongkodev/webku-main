@@ -29,15 +29,15 @@ const projects = [
     codeUrl: "https://github.com/example/sushi-bar",
   },
   {
-    title: "Perusahaan Tambang",
+    title: "Dagang Kuota",
     image:
-      "https://www.dropbox.com/scl/fi/i1ju8d6l9s3ptz51o7lvz/web3.png?rlkey=3ipaaxsdbrydgiu0zmdmxhtz2&st=g5qoim2c&dl=0&raw=1",
+      "https://www.dropbox.com/scl/fi/7nx9k2cw863stax7fgcvm/dagangkuota.jpg?rlkey=m9app89dbwcw5zojkvai4ovt1&st=65o3ptia&raw=1",
     category: "Industri",
     description:
-      "Website perusahaan dengan sistem manajemen konten dan galeri proyek",
-    tags: ["WordPress", "PHP", "MySQL"],
-    year: "2022",
-    demoUrl: "https://mining-company-example.com",
+      "Website Riseller Kuota Jogja",
+    tags: ["Node Js", "React js", "Telwincss"],
+    year: "2025",
+    demoUrl: "https://dagangkuota.com",
   },
   {
     title: "Laundry",
