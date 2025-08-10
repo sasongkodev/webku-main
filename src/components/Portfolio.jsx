@@ -43,34 +43,31 @@ const projects = [
     image:
       "https://www.dropbox.com/scl/fi/aqan10u8hps723hpa33sd/phising-kit.png?rlkey=jxg2ws1zz4uzw5cnopm6kw6km&st=bzd98xx0&raw=1",
     category: "Layanan",
-    description:
-      "Aplikasi Phising Store",
+    description: "Aplikasi Phising Store",
     tags: ["Wordpress", "MySQL"],
     year: "2024",
     demoUrl: "https://webhemat.freshcraftkit.my.id/contoh2/home/",
   },
   {
-    title: "Website Kesehatan",
+    title: "Website News",
     image:
-      "https://www.dropbox.com/scl/fi/kzpoaq0c4c9g5z2ajt027/web4.png?rlkey=qk2kgxeqbn4t8q1clv5lct64b&st=usw49l6u&dl=0&raw=1",
-    category: "Kesehatan",
-    description:
-      "Platform informasi kesehatan dengan sistem booking dokter online",
-    tags: ["React", "Node.js", "MongoDB"],
-    year: "2023",
-    demoUrl: "https://health-example.com",
-    codeUrl: "https://github.com/example/health-website",
+      "https://www.dropbox.com/scl/fi/nognscj5zz3x0i8bw3ofm/Screenshot-from-2025-08-02-08-50-33.png?rlkey=9x1pqmbh18wyct7t6wxfvotec&st=8ni3uaee&raw=1",
+    category: "news",
+    description: "Platform informasi tech",
+    tags: ["Wordpress"],
+    year: "2024",
+    demoUrl: "https://ngobrolit.com/",
+    // codeUrl: "https://github.com/example/health-website",
   },
   {
-    title: "E-commerce Fashion",
-    image:
-      "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    category: "Retail",
-    description:
-      "Toko online fashion dengan sistem inventory dan pembayaran terintegrasi",
-    tags: ["Shopify", "Liquid", "JavaScript"],
-    year: "2023",
-    demoUrl: "https://fashion-store-example.com",
+    title: "NatureFarm",
+    image: "https://www.dropbox.com/scl/fi/rry1catttjjssoc9e6zxf/Screenshot-from-2025-08-10-20-06-06.png?rlkey=1b4l5pfsss7l6x5hxrvj56kt1&st=5jkcvome&raw=1",
+    category: "Farm",
+    description: "Farm Platform",
+    tags: ["Wordpress"],
+    year: "2025",
+    demoUrl:
+      "https://templatekits.freshcraftkit.my.id/naturefarm/template-kit/home/",
   },
 ];
 
