@@ -13,8 +13,9 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentSection, setCurrentSection] = useState("home");
 
-  // Daftar section
+  // Daftar section termasuk paket-bulanan
   const sections = ["home", "layanan", "portfolio", "harga", "kontak"];
+  const additionalLinks = ["promo", "paket-bulanan"]; // tambahan link
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +23,8 @@ const Header = () => {
 
       const scrollPosition = window.scrollY + 80;
 
-      for (const section of sections) {
+      // Cek section utama
+      for (const section of [...sections, ...additionalLinks]) {
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
@@ -156,12 +158,20 @@ const Header = () => {
                 </span>
               </span>
             </NavItem>
+            {/* Tambahkan Paket Bulanan */}
+            <NavItem
+              to="paket-bulanan"
+              isMobile={false}
+              isActive={currentSection === "paket-bulanan"}
+            >
+              Paket Bulanan
+            </NavItem>
           </nav>
 
           {/* Desktop CTA Button */}
           <div className="hidden md:flex items-center">
             <motion.a
-              href="https://wa.me/6281574741954 "
+              href="https://wa.me/6281574741954"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition-all duration-200 text-sm shadow-md"
@@ -222,10 +232,18 @@ const Header = () => {
                   </span>
                 </span>
               </NavItem>
+              {/* Tambahkan Paket Bulanan di mobile */}
+              <NavItem
+                to="paket-bulanan"
+                isMobile={true}
+                isActive={currentSection === "paket-bulanan"}
+              >
+                Paket Bulanan
+              </NavItem>
 
               <div className="pt-3 mt-3 border-t border-gray-100">
                 <motion.a
-                  href="https://wa.me/6281574741954 "
+                  href="https://wa.me/6281574741954"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-md transition-all duration-200 text-sm shadow-md"

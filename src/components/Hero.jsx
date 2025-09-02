@@ -4,12 +4,12 @@ import { FaReact, FaWordpress, FaNodeJs } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 
 /**
- * Fresh Hero Section (accessible, lighter motion, cleaner visuals)
- * - Better color contrast & spacing
- * - ReducedMotion support
- * - Leaner SVG grid + soft blobs
- * - Fixed broken avatar URLs
- * - Semantic & a11y improvements
+ * Hero Section – SEO & A11y tuned (Klaten)
+ * - H1: mengandung "Jasa Pembuatan Website Klaten"
+ * - CTA: natural keyword (bukan stuffing)
+ * - Alt/aria: jelas & relevan
+ * - Nomor WA diseragamkan dengan header (+6281574741954)
+ * - id="home" untuk sinkron scroll dari Header
  */
 
 const GRID_BASE64 =
@@ -32,7 +32,7 @@ const techStack = [
 const Avatar = ({ seed }) => (
   <img
     src={`https://api.dicebear.com/7.x/thumbs/svg?seed=${seed}`}
-    alt="Avatar klien"
+    alt={`Avatar klien ${seed}`}
     className="w-10 h-10 rounded-full border border-white/20 bg-white/20"
     loading="lazy"
     decoding="async"
@@ -65,7 +65,11 @@ const HeroRedesign = () => {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden text-white">
+    <section
+      id="home"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden text-white"
+      aria-label="Jasa Pembuatan Website Klaten – WebHemat PRO"
+    >
       {/* Background gradient */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0B1220] via-[#0f1f4a] to-[#1D4ED8]" />
 
@@ -76,7 +80,7 @@ const HeroRedesign = () => {
         style={{ backgroundImage: `url(${GRID_BASE64})` }}
       />
 
-      {/* Soft blobs (auto-paused for reduced motion) */}
+      {/* Soft blobs */}
       {!prefersReducedMotion && (
         <>
           <FloatingBlob className="top-16 left-12 bg-blue-400/25" size={180} />
@@ -102,17 +106,22 @@ const HeroRedesign = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="space-y-6"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/15">
+          {/* Eyebrow: sinyal layanan & lokasi */}
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/15"
+            aria-label="Jasa Pembuatan Website Klaten"
+          >
             <span className="text-xs md:text-sm text-blue-100">
-              🚀 Transformasi Digital
+              ⚡ Jasa Website untuk Bisnis di Klaten
             </span>
           </div>
 
+          {/* H1 ber-keyword + manfaat */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
-            <span className="block">Tingkatkan Bisnis Anda dengan</span>
+            <span className="block">Jasa Pembuatan Website Klaten</span>
             <span className="relative inline-block mt-2">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-cyan-200 to-indigo-300">
-                Website Profesional
+                Profesional, Cepat & SEO-Friendly
               </span>
               <motion.span
                 aria-hidden
@@ -126,9 +135,9 @@ const HeroRedesign = () => {
           </h1>
 
           <p className="text-base md:text-lg text-blue-100/90 max-w-xl leading-relaxed">
-            Solusi lengkap untuk kebutuhan digital Anda. Website cepat, aman,
-            dan SEO‑friendly untuk menjangkau lebih banyak pelanggan &
-            meningkatkan konversi.
+            Bangun kepercayaan & tingkatkan konversi dengan website cepat, aman,
+            dan mudah ditemukan pelanggan di Klaten & sekitarnya. Cocok untuk
+            UMKM, company profile, hingga toko online.
           </p>
 
           {/* CTAs */}
@@ -136,12 +145,16 @@ const HeroRedesign = () => {
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
-              href="https://wa.me/628985884161?text=Halo%20saya%20tertarik%20untuk%20konsultasi%20gratis."
+              href="https://wa.me/6281574741954?text=Halo%20WebHemat%2C%20saya%20ingin%20konsultasi%20jasa%20pembuatan%20website%20untuk%20bisnis%20di%20Klaten."
               target="_blank"
               rel="noreferrer noopener"
               className="group relative inline-flex items-center justify-center px-7 py-3 rounded-full font-semibold text-blue-950 bg-white shadow-lg shadow-blue-900/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              aria-label="Konsultasi Jasa Website Klaten via WhatsApp"
+              title="Konsultasi Jasa Website Klaten"
             >
-              <span className="relative z-10">Konsultasi Gratis</span>
+              <span className="relative z-10">
+                Konsultasi Jasa Website Klaten
+              </span>
               <span className="ml-2 relative z-10 group-hover:translate-x-0.5 transition-transform">
                 →
               </span>
@@ -154,6 +167,8 @@ const HeroRedesign = () => {
             <a
               href="#portfolio"
               className="inline-flex items-center justify-center px-6 py-3 rounded-full border border-white/25 bg-white/10 hover:bg-white/15 backdrop-blur font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+              aria-label="Lihat portfolio pembuatan website Klaten"
+              title="Portfolio WebHemat PRO"
             >
               <span>Lihat Portfolio</span>
               <span className="ml-2 translate-x-0 group-hover:translate-x-0.5 transition">
@@ -165,7 +180,10 @@ const HeroRedesign = () => {
           {/* Social proof */}
           <div className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex -space-x-2">
+              <div
+                className="flex -space-x-2"
+                aria-label="Pelanggan WebHemat di Klaten dan sekitarnya"
+              >
                 {["Alya", "Bima", "Citra", "Dimas"].map((seed) => (
                   <Avatar key={seed} seed={seed} />
                 ))}
@@ -174,7 +192,10 @@ const HeroRedesign = () => {
                 <p className="text-sm text-blue-100/90">
                   Dipercaya 500+ bisnis
                 </p>
-                <div className="flex items-center gap-1">
+                <div
+                  className="flex items-center gap-1"
+                  aria-label="Rating 5 dari 5"
+                >
                   {Array.from({ length: 5 }).map((_, i) => (
                     <svg
                       key={i}
@@ -194,7 +215,7 @@ const HeroRedesign = () => {
             </div>
 
             <p className="text-sm text-blue-100/80 mt-4 mb-3">
-              Dibangun dengan teknologi terbaik:
+              Dibangun dengan teknologi modern:
             </p>
             <div className="flex flex-wrap gap-3 items-center">
               {techStack.map((t) => (
@@ -215,7 +236,7 @@ const HeroRedesign = () => {
           <div className="relative max-w-md mx-auto">
             <motion.img
               src="https://www.dropbox.com/scl/fi/adcd8mr5quejbdbwxnc36/2.png?rlkey=xstonejc9aeknivrl43j71pqg&st=5ali7ojx&dl=0&raw=1"
-              alt="Ilustrasi antarmuka website modern responsive"
+              alt="Contoh tampilan website profesional untuk bisnis di Klaten"
               className="w-full rounded-2xl shadow-2xl object-cover border border-white/10"
               loading="lazy"
               decoding="async"
@@ -230,6 +251,7 @@ const HeroRedesign = () => {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
+              aria-hidden
             />
             <motion.div
               className="absolute -bottom-6 -right-6 w-40 h-40 rounded-2xl bg-indigo-500/15 border border-indigo-300/20"
@@ -237,6 +259,7 @@ const HeroRedesign = () => {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
+              aria-hidden
             />
 
             <motion.div
@@ -245,6 +268,7 @@ const HeroRedesign = () => {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.8 }}
+              aria-hidden
             >
               <div className="h-4 bg-slate-200" />
               <div className="h-px bg-slate-200/70" />
@@ -260,7 +284,10 @@ const HeroRedesign = () => {
         animate={!prefersReducedMotion ? { y: [0, 8, 0] } : {}}
         transition={{ duration: 1.8, repeat: Infinity }}
       >
-        <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center items-start">
+        <div
+          className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center items-start"
+          aria-hidden
+        >
           <motion.div
             className="w-1 h-2 bg-white rounded-full mt-2"
             animate={
