@@ -37,6 +37,13 @@ export default function SEOHome() {
       />
       <link rel="canonical" href="https://www.webhemat.web.id/" />
       <meta name="robots" content="index, follow" />
+
+      {/* Google Site Verification */}
+      <meta
+        name="google-site-verification"
+        content="H4esizUVe6JdX9KXF0I8XS5Uw8MuSzHyy1V2S_XMVz8"
+      />
+
       <meta property="og:type" content="website" />
       <meta
         property="og:title"
